@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Portal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://World.gd" type="Script" id=4]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.2592, 0.79164, 0.81, 1, 0.52542, 0.2592, 0.81, 1 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,8 +23,8 @@ z_index = 2
 
 [node name="Line2D" type="Line2D" parent="."]
 modulate = Color( 1, 1, 1, 0.282353 )
-points = PoolVector2Array( 99.4332, 656.466, 617.294, 303.061 )
-default_color = Color( 0.258824, 0.807843, 0.756863, 1 )
+points = PoolVector2Array( 99.4332, 656.466, 615.978, 304.881 )
+gradient = SubResource( 1 )
 
 [node name="Line2D2" type="Line2D" parent="."]
 modulate = Color( 1, 1, 1, 0.282353 )
@@ -33,6 +36,7 @@ default_color = Color( 0.258824, 0.807843, 0.756863, 1 )
 
 [node name="Portal 1" parent="Portals" instance=ExtResource( 3 )]
 position = Vector2( 95.7914, 656.172 )
+key_available = false
 
 [node name="Portal 2" parent="Portals" instance=ExtResource( 3 )]
 position = Vector2( 615.632, 304.001 )

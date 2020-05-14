@@ -3,8 +3,11 @@ extends KinematicBody2D
 
 const GRAVITY = 40
 const MAX_FALL_SPEED = 1000
-const MOVE_SPEED = 500
 const JUMP_FORCE = 650
+
+const MOVE_MAX_SPEED = 600
+const MOVE_SLOWDOWN = 0.8
+const MOVE_FORCE = 50
 
 var portal_number = null
 
@@ -13,7 +16,7 @@ var world = null
 var dy = 0
 var dx = 0
 
-signal move_portal(number)
+var grounded_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,27 +24,30 @@ func _ready():
 	print(world)
 
 func _process(delta):
-	dx = 0
-	if Input.is_action_pressed("ui_right"):
-		dx = 1
-	if Input.is_action_pressed("ui_left"):
-		dx = -1
-	
-	if portal_number != null:
-		if Input.is_action_just_pressed("next_portal"):
-			emit_signal("move_portal", portal_number+1)
-		elif Input.is_action_just_pressed("prev_portal"):
-			emit_signal("move_portal", portal_number-1)
-
+	pass
 	
 func _physics_process(delta):
-	move_and_slide(Vector2(dx * MOVE_SPEED, dy), Vector2(0, -1))
+	if Input.is_action_pressed("ui_right"):
+		dx +=  MOVE_FORCE 
+	elif Input.is_action_pressed("ui_left"):
+		dx += -MOVE_FORCE
+	else:
+		dx *= MOVE_SLOWDOWN
+	
+	if abs(dx) > MOVE_MAX_SPEED:
+		dx = MOVE_MAX_SPEED * sign(dx)
+		
+	move_and_slide(Vector2(dx, dy), Vector2(0, -1))
 	
 	var grounded = is_on_floor()
 	if not grounded:
 		dy += GRAVITY
-	else:
-		dy = 5
+		grounded_time = 0
+		
+	if grounded:
+		grounded_time += delta
+		if grounded_time > 0.1:
+			dy = 5
 
 	if dy > MAX_FALL_SPEED:
 		dy = MAX_FALL_SPEED
@@ -49,11 +55,8 @@ func _physics_process(delta):
 		dy = -JUMP_FORCE
 		
 	
-func entered_portal(portal):
-	print("entered portal ", portal.number)
-	portal_number = portal.number
+func get_class():
+	return "Player"
 
-func exited_portal(portal):
-	print("exited portal ", portal.number)
-	if portal_number == portal.number:
-		portal_number = null
+func flip_dy():
+	dy = -dy
