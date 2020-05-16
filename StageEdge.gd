@@ -22,6 +22,7 @@ func _ready():
 func get_class():
 	return "StageEdge"
 
+
 func _on_enter_body_entered(body):
 	if body.get_class() == "Player":
 		if body.position.x < position.x + $enter.position.x:
@@ -30,8 +31,6 @@ func _on_enter_body_entered(body):
 			emit_signal("pan_camera", -pan_amount)
 		allowed = false
 			
-
-
 func _on_enter_body_exited(body):
 	if body.get_class() == "Player":
 		if body.position.x < $"../Camera2D".position.x:
