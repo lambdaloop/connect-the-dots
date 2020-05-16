@@ -26,7 +26,5 @@ position = Vector2( 24, 0 )
 rotation = 1.57079
 shape = SubResource( 2 )
 one_way_collision_margin = 2.0
-[connection signal="body_entered" from="enter_left" to="." method="_on_enter_left_body_entered"]
 [connection signal="body_exited" from="enter_left" to="." method="_on_enter_left_body_exited"]
-[connection signal="body_entered" from="enter_right" to="." method="_on_enter_right_body_entered"]
 [connection signal="body_exited" from="enter_right" to="." method="_on_enter_right_body_exited"]

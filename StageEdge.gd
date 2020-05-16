@@ -27,3 +27,4 @@ func _on_enter_left_body_exited(body):
 func _on_enter_right_body_exited(body):
 	if body.get_class() == "Player" and body.position.x < position.x + $enter_right.position.x:
 		emit_signal("pan_camera", -pan_amount)
+
