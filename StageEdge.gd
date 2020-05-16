@@ -20,11 +20,10 @@ func _ready():
 func get_class():
 	return "StageEdge"
 
-func _on_enter_left_body_entered(body):
-	if body.get_class() == "Player" and body.position.x < position.x + $enter_left.position.x:
+func _on_enter_left_body_exited(body):
+	if body.get_class() == "Player" and body.position.x > position.x + $enter_left.position.x:
 		emit_signal("pan_camera", pan_amount)
 
-func _on_enter_right_body_entered(body):
-	if body.get_class() == "Player" and body.position.x > position.x + $enter_right.position.x:
+func _on_enter_right_body_exited(body):
+	if body.get_class() == "Player" and body.position.x < position.x + $enter_right.position.x:
 		emit_signal("pan_camera", -pan_amount)
-

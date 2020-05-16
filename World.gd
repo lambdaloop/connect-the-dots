@@ -61,13 +61,13 @@ func player_move_portal(number, direction):
 		if p.enabled_left:
 			p.disable_until_exit()
 			$Player.position = p.position 
-			$Player.translate(Vector2(-24, 4))
+			$Player.translate(Vector2(-30, 4))
 			$Player.flip_dy()
 	elif direction == "right":
 		if p.enabled_right:
 			p.disable_until_exit()
 			$Player.position = p.position
-			$Player.translate(Vector2(24, 4))
+			$Player.translate(Vector2(30, 4))
 			$Player.flip_dy()
 			
 	var after = $Player.position.x
