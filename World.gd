@@ -5,7 +5,12 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+var PortalLine = load("res://PortalLine.tscn")
+
+const PORTAL_OFFSET = 16
+
 var portal_dict = {}
+var lines_dict = {} # key for a line from portal N-1 to N is N
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,14 +20,32 @@ func _ready():
 			portal.connect("move_portal", self, "player_move_portal")
 			portal.connect("enable_portal", self, "world_enable_portal")
 
+	for pnum in portal_dict.keys():
+		if pnum-1 in portal_dict:
+			var p1 = portal_dict[pnum-1]
+			var p2 = portal_dict[pnum]
+			var line = PortalLine.instance()
+			line.points = PoolVector2Array([
+				p1.position + Vector2(PORTAL_OFFSET, 0),
+				p2.position - Vector2(PORTAL_OFFSET, 0)
+			])
+			add_child(line)
+			line.visible = p2.enabled_left
+			lines_dict[pnum] = line
+
+	#$Camera2D.move_local_x(1280)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
 func world_enable_portal(number):
+				
+
 	portal_dict[number].activate_left()
 	if number-1 in portal_dict:
 		portal_dict[number-1].activate_right()
+		lines_dict[number].visible = true
 
 func player_move_portal(number, direction):
 	print("move to ", number)

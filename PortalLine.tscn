@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.2592, 0.79164, 0.81, 1, 0.52542, 0.2592, 0.81, 1 )
+
+[node name="Line2D" type="Line2D"]
+modulate = Color( 1, 1, 1, 0.282353 )
+points = PoolVector2Array( 112.711, 661.021, 578.608, 661.835 )
+gradient = SubResource( 1 )
