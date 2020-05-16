@@ -33,15 +33,19 @@ func _ready():
 			line.visible = p2.enabled_left
 			lines_dict[pnum] = line
 
+	for edge in get_children():
+		if edge.get_class() == 'StageEdge':
+			edge.connect("pan_camera", self, "pan_camera")
 	#$Camera2D.move_local_x(1280)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-func world_enable_portal(number):
-				
+func pan_camera(dx):
+	$Camera2D.move_local_x(dx)
 
+func world_enable_portal(number):
 	portal_dict[number].activate_left()
 	if number-1 in portal_dict:
 		portal_dict[number-1].activate_right()
@@ -51,6 +55,7 @@ func player_move_portal(number, direction):
 	print("move to ", number)
 	if not (number in portal_dict):
 		return
+	var before = $Player.position.x
 	var p = portal_dict[number]
 	if direction == "left":
 		if p.enabled_left:
@@ -64,4 +69,13 @@ func player_move_portal(number, direction):
 			$Player.position = p.position
 			$Player.translate(Vector2(24, 4))
 			$Player.flip_dy()
+			
+	var after = $Player.position.x
+	var s1 = int(before / 1280)
+	var s2 = int(after / 1280)
+	if s2 > s1:
+		pan_camera(1280)
+	elif s2 < s1:
+		pan_camera(-1280)
+		
 
