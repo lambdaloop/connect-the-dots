@@ -24,7 +24,9 @@ func _ready():
 	print(world)
 
 func _process(delta):
-	pass
+	$Sprite.set_scale(Vector2(
+		1.75 - 0.3*abs(dx)/MOVE_MAX_SPEED, 
+		1.75 - 0.3*abs(dy)/MAX_FALL_SPEED))
 	
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):

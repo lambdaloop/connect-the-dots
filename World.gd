@@ -7,7 +7,7 @@ extends Node2D
 
 var PortalLine = load("res://PortalLine.tscn")
 
-const PORTAL_OFFSET = 16
+const PORTAL_OFFSET = 24
 
 var portal_dict = {}
 var lines_dict = {} # key for a line from portal N-1 to N is N
