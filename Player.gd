@@ -41,8 +41,6 @@ func _physics_process(delta):
 		
 	move_and_slide(Vector2(dx, dy), Vector2(0, -1))
 	
-	
-	
 	var grounded = is_on_floor()
 	if not grounded:
 		dy += GRAVITY
