@@ -101,9 +101,9 @@ script = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="Pause dialogue"]
 margin_left = 1.90002
-margin_top = -2.84999
+margin_top = -1.2633
 margin_right = 335.9
-margin_bottom = 76.15
+margin_bottom = 77.7367
 custom_fonts/font = SubResource( 2 )
 text = "Press up arrow to jump"
 __meta__ = {
@@ -130,12 +130,11 @@ position = Vector2( -1131.23, 173.474 )
 script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="Dialogue"]
-margin_left = 251.008
-margin_top = 81.2437
-margin_right = 585.008
-margin_bottom = 160.244
+margin_left = 221.025
+margin_top = 65.5336
+margin_right = 579.025
+margin_bottom = 149.534
 custom_fonts/font = SubResource( 2 )
-text = "Press up arrow to jump"
 __meta__ = {
 "_edit_use_anchors_": false
 }
