@@ -13,7 +13,7 @@ points = PoolVector2Array( 0, -16, -48, 16, 0, 16 )
 points = PoolVector2Array( 0, -16, 48, 16, 0, 16 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 9.51664
+radius = 11.9065
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8, 16 )
@@ -49,7 +49,7 @@ shape = SubResource( 2 )
 
 [node name="portal_key_sprite" type="Sprite" parent="portal_key"]
 position = Vector2( -80, 0 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 0.125, 0.125 )
 texture = ExtResource( 4 )
 
 [node name="portal_key_collision" type="CollisionShape2D" parent="portal_key"]
