@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -6,9 +6,16 @@
 [ext_resource path="res://World.gd" type="Script" id=4]
 [ext_resource path="res://StageEdge.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Switch.gd" type="Script" id=6]
+[ext_resource path="res://assets/Oswald-Regular.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 70, 40 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 34
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 7 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 4 )
@@ -84,5 +91,17 @@ __meta__ = {
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( -1130.21, 270.768 )
+
+[node name="Label" type="Label" parent="Node2D"]
+margin_right = 201.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 2 )
+text = "Press W to jump"
+__meta__ = {
+"_edit_use_anchors_": false
 }
 [connection signal="body_entered" from="Switch/Area2D" to="Switch" method="_on_Area2D_body_entered"]
