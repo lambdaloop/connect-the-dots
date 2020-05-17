@@ -37,7 +37,7 @@ func _ready():
 			line.visible = p2.enabled_left
 			lines_dict[pnum] = line
 
-	for edge in get_children():
+	for edge in $Edges.get_children():
 		if edge.get_class() == 'StageEdge':
 			edge.connect("pan_camera", self, "pan_camera")
 			
@@ -62,10 +62,14 @@ func player_death():
 	print("YOU DEADDD")
 	$Player.position = checkpoints[checkpoint_id].position
 	$Player.reset_velocity()
+	move_camera_to_player()
 
 func set_checkpoint(id):
 	print("entered checkpoint " + str(id))
 	checkpoint_id = id
+	
+func move_camera_to_player():
+	$Camera2D.position.x = floor($Player.position.x / 1280) * 1280
 
 func pan_camera(dx):
 	$Camera2D.move_local_x(dx)

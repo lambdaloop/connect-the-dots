@@ -42,15 +42,18 @@ tile_data = PoolIntArray( 65496, 0, 0, 65497, 0, 0, 65498, 0, 0, 65499, 0, 0, 65
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 12 )]
 position = Vector2( -1200, 624 )
 
+[node name="Checkpoint2" parent="Checkpoints" instance=ExtResource( 12 )]
+position = Vector2( -24, 624 )
+
 [node name="DeathTiles" type="TileMap" parent="."]
 tile_set = ExtResource( 10 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 1376247, 0, 0, 1376248, 0, 0, 1376249, 0, 0, 1376250, 0, 0, 1376251, 0, 0, 1376252, 0, 0 )
+tile_data = PoolIntArray( 1376247, 0, 0, 1376248, 0, 0, 1376249, 0, 0, 1376250, 0, 0 )
 
 [node name="DeathZone" parent="." instance=ExtResource( 11 )]
-position = Vector2( -192, 656.238 )
-scale = Vector2( 5.99495, 1 )
+position = Vector2( -224, 656.238 )
+scale = Vector2( 3.99495, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1232.74, 657.307 )
@@ -136,24 +139,18 @@ __meta__ = {
 one_shot = true
 
 [node name="Edges" type="Node2D" parent="."]
-position = Vector2( -192, 656.238 )
-scale = Vector2( 5.99495, 1 )
 
 [node name="StageEdge" parent="Edges" instance=ExtResource( 5 )]
-position = Vector2( 245.54, -296.238 )
-scale = Vector2( 0.166807, 1 )
+position = Vector2( 1280, 360 )
 
 [node name="StageEdge4" parent="Edges" instance=ExtResource( 5 )]
-position = Vector2( 32.027, -296.238 )
-scale = Vector2( 0.166807, 1 )
+position = Vector2( 0.000259399, 360 )
 
 [node name="StageEdge2" parent="Edges" instance=ExtResource( 5 )]
-position = Vector2( 459.053, -296.238 )
-scale = Vector2( 0.166807, 1 )
+position = Vector2( 2560, 360 )
 
 [node name="StageEdge3" parent="Edges" instance=ExtResource( 5 )]
-position = Vector2( 672.566, -296.238 )
-scale = Vector2( 0.166807, 1 )
+position = Vector2( 3840, 360 )
 [connection signal="body_entered" from="Switch/Area2D" to="Switch" method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="Pause dialogue/Label/Timer" to="Pause dialogue" method="_on_Timer_timeout"]
 [connection signal="timeout" from="Dialogue/Label/Timer" to="Dialogue" method="_on_Timer_timeout"]

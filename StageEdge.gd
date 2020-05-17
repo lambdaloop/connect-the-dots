@@ -25,7 +25,7 @@ func get_class():
 
 func _on_enter_body_entered(body):
 	if body.get_class() == "Player":
-		if body.position.x < position.x + $enter.position.x:
+		if body.position.x < position.x:
 			emit_signal("pan_camera", pan_amount)
 		else:
 			emit_signal("pan_camera", -pan_amount)
@@ -33,7 +33,7 @@ func _on_enter_body_entered(body):
 			
 func _on_enter_body_exited(body):
 	if body.get_class() == "Player":
-		if body.position.x < $"../Camera2D".position.x:
+		if body.position.x < $"../../Camera2D".position.x:
 			emit_signal("pan_camera", -pan_amount)
-		elif body.position.x > $"../Camera2D".position.x + 1280:
+		elif body.position.x > $"../../Camera2D".position.x + 1280:
 			emit_signal("pan_camera", pan_amount) 
