@@ -16,33 +16,47 @@ var checkpoints = {}
 
 var checkpoint_id = 0
 
+func setup_portal(portal):
+	portal_dict[portal.number] = portal
+	portal.connect("move_portal", self, "player_move_portal")
+	portal.connect("enable_portal", self, "world_enable_portal")
+	
+func update_line_points(pnum):
+	var line = lines_dict[pnum]
+	var p1 = portal_dict[pnum-1]
+	var p2 = portal_dict[pnum]
+	line.points = PoolVector2Array([
+		p1.global_position + Vector2(PORTAL_OFFSET, 0),
+		p2.global_position - Vector2(PORTAL_OFFSET, 0)
+	])
+	line.visible = p2.enabled_left
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for portal in $Portals.get_children():
 		if portal.get_class() == "Portal":
-			portal_dict[portal.number] = portal
-			portal.connect("move_portal", self, "player_move_portal")
-			portal.connect("enable_portal", self, "world_enable_portal")
+			setup_portal(portal)
 
+	for zone in get_children():
+		if zone.get_class() == "FloatingPlatform":
+			for x in zone.get_children():
+				if x.get_class() == "Portal":
+					setup_portal(x)
+
+	
 	for pnum in portal_dict.keys():
 		if pnum-1 in portal_dict:
-			var p1 = portal_dict[pnum-1]
-			var p2 = portal_dict[pnum]
 			var line = PortalLine.instance()
-			line.points = PoolVector2Array([
-				p1.position + Vector2(PORTAL_OFFSET, 0),
-				p2.position - Vector2(PORTAL_OFFSET, 0)
-			])
 			add_child(line)
-			line.visible = p2.enabled_left
 			lines_dict[pnum] = line
+			update_line_points(pnum)
 
 	for edge in $Edges.get_children():
 		if edge.get_class() == 'StageEdge':
 			edge.connect("pan_camera", self, "pan_camera")
 			
 	for zone in get_children():
-		if zone.get_class() == "DeathZone":
+		if zone.get_class() == "DeathZone" or zone.get_class() == "FloatingPlatform":
 			zone.connect("player_died", self, "player_death")
 			
 	var id = 0
@@ -57,8 +71,9 @@ func _ready():
 	move_camera_to_player()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	for pnum in lines_dict.keys():
+		update_line_points(pnum)
 
 func player_death():
 	print("YOU DEADDD")
@@ -91,13 +106,13 @@ func player_move_portal(number, direction):
 	if direction == "left":
 		if p.enabled_left:
 			p.disable_until_exit()
-			$Player.position = p.position 
+			$Player.position = p.global_position 
 			$Player.translate(Vector2(-42, 4))
 			$Player.flip_dy()
 	elif direction == "right":
 		if p.enabled_right:
 			p.disable_until_exit()
-			$Player.position = p.position
+			$Player.position = p.global_position
 			$Player.translate(Vector2(42, 4))
 			$Player.flip_dy()
 			

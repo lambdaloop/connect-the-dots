@@ -7,7 +7,7 @@ const JUMP_FORCE = 650
 
 const MOVE_MAX_SPEED = 600
 const MOVE_SLOWDOWN = 0.8
-const MOVE_FORCE = 50
+const MOVE_FORCE = 40
 
 var portal_number = null
 
@@ -25,7 +25,7 @@ func _ready():
 
 func _process(delta):
 	$Sprite.set_scale(Vector2(
-		1.75 - 0.3*abs(dx)/MOVE_MAX_SPEED - 0.3*abs(dy)/MAX_FALL_SPEED, 
+		1.75 - 0.3*abs(dx)/MOVE_MAX_SPEED - 0.5*abs(dy)/MAX_FALL_SPEED, 
 		1.75 ))
 	
 func _physics_process(delta):

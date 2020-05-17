@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://DeathTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://FloatingPlatform.gd" type="Script" id=3]
+[ext_resource path="res://DeathZone.tscn" type="PackedScene" id=4]
+
+[node name="FloatingPlatform" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="DeathBelow" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0 )
+
+[node name="Platform" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -2, 0, 0, -1, 0, 0, -65536, 0, 0, -65535, 0, 0 )
+
+[node name="DeathAbove" type="TileMap" parent="."]
+position = Vector2( 0, -64 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0 )
+
+[node name="DeathZoneAbove" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, -48 )
+scale = Vector2( 4, 1 )
+
+[node name="DeathZoneBelow" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0, 16 )
+scale = Vector2( 4, 1 )
+
+[node name="WaitTimer" type="Timer" parent="."]
+process_mode = 0
+one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+process_mode = 0
+[connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_MoveTimer_timeout"]

@@ -5,6 +5,8 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+export var enabled = true
+
 signal player_died()
 
 # Called when the node enters the scene tree for the first time.
@@ -20,5 +22,5 @@ func get_class():
 	return "DeathZone"
 
 func _on_Area2D_body_entered(body):
-	if body.get_class() == "Player":
+	if body.get_class() == "Player" and enabled:
 		emit_signal("player_died")
