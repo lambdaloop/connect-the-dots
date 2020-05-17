@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -10,21 +10,19 @@
 [ext_resource path="res://Dialogue Bubble.gd" type="Script" id=8]
 [ext_resource path="res://Pause_bubble.gd" type="Script" id=9]
 [ext_resource path="res://DeathTiles.tres" type="TileSet" id=10]
-[ext_resource path="res://DeathZone.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Checkpoint.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Switch2.gd" type="Script" id=13]
-
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 57.7306, 40 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 36
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 36
 use_mipmaps = true
 use_filter = true
@@ -57,11 +55,6 @@ position = Vector2( -24, 624 )
 tile_set = ExtResource( 10 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 1376247, 0, 0, 1376248, 0, 0, 1376249, 0, 0, 1376250, 0, 0 )
-
-[node name="DeathZone" parent="." instance=ExtResource( 11 )]
-position = Vector2( -224, 656.238 )
-scale = Vector2( 3.99495, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -1233.84, 657.893 )
@@ -125,7 +118,7 @@ __meta__ = {
 
 [node name="Switch2" type="Node2D" parent="."]
 position = Vector2( -828.579, 184.185 )
-script = ExtResource( 10 )
+script = ExtResource( 13 )
 
 [node name="Label" type="Label" parent="Switch2"]
 visible = false
@@ -133,7 +126,7 @@ margin_left = 7.66919
 margin_top = -144.819
 margin_right = 761.669
 margin_bottom = -26.8185
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 text = "Portals conserve momentum -- use this to your advantage!"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -158,7 +151,7 @@ margin_left = 70.9691
 margin_top = -168.385
 margin_right = 426.969
 margin_bottom = -89.3848
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "Use the arrow keys to move"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -178,7 +171,7 @@ margin_left = 315.264
 margin_top = -100.576
 margin_right = 673.264
 margin_bottom = -16.5755
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
