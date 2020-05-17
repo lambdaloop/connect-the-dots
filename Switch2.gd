@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 # Declare member variables here. Examples:
@@ -10,8 +10,7 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
-
-
 func _on_Area2D_body_entered(body):
 	if body.get_class() == "Player":
-		get_node("../../World").world_enable_portal(get_node("../Portals/Portal 2").number)
+		get_node("../../World").world_enable_portal(get_node("../Portals/Portal 8").number)
+		get_node('Label').visible = true

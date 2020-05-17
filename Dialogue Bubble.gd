@@ -22,5 +22,5 @@ func _on_Timer_timeout():
 		get_node('Label').text = ""
 	if counts_elapsed >= 2:
 		get_node('Label').text = "Sometimes, the platforms are too high. \nUse portals to reach them!"
-	if counts_elapsed >= 3:
+	if counts_elapsed >= 4:
 		get_node('Label').text = ""
