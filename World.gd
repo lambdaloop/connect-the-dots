@@ -71,7 +71,7 @@ func player_move_portal(number, direction):
 			$Player.flip_dy()
 			
 	var after = $Player.position.x
-	$Camera2D.position.x = int($Player.position.x / 1280) * 1280
+	$Camera2D.position.x = floor($Player.position.x / 1280) * 1280
 #	var s1 = int(before / 1280)
 #	var s2 = int(after / 1280)
 #	if s2 > s1:
