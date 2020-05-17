@@ -54,6 +54,8 @@ func _ready():
 			id += 1
 	#$Camera2D.move_local_x(1280)
 	
+	move_camera_to_player()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
