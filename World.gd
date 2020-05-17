@@ -11,6 +11,10 @@ const PORTAL_OFFSET = 24
 
 var portal_dict = {}
 var lines_dict = {} # key for a line from portal N-1 to N is N
+var checkpoints = {}
+
+
+var checkpoint_id = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,6 +44,14 @@ func _ready():
 	for zone in get_children():
 		if zone.get_class() == "DeathZone":
 			zone.connect("player_died", self, "player_death")
+			
+	var id = 0
+	for checkpoint in $Checkpoints.get_children():
+		if checkpoint.get_class() == "Checkpoint":
+			checkpoint.id = id
+			checkpoint.connect("entered_checkpoint", self, "set_checkpoint")
+			checkpoints[id] = checkpoint
+			id += 1
 	#$Camera2D.move_local_x(1280)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,6 +60,12 @@ func _ready():
 
 func player_death():
 	print("YOU DEADDD")
+	$Player.position = checkpoints[checkpoint_id].position
+	$Player.reset_velocity()
+
+func set_checkpoint(id):
+	print("entered checkpoint " + str(id))
+	checkpoint_id = id
 
 func pan_camera(dx):
 	$Camera2D.move_local_x(dx)

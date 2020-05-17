@@ -64,3 +64,7 @@ func get_class():
 
 func flip_dy():
 	dy = -dy
+	
+func reset_velocity():
+	dx = 0
+	dy = 0

@@ -1,11 +1,14 @@
-extends Node2D
+extends Area2D
 
 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
 
-signal player_died()
+export var id = 0
+
+
+signal entered_checkpoint(id)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,8 +20,7 @@ func _ready():
 #	pass
 
 func get_class():
-	return "DeathZone"
+	return "Checkpoint"
 
-func _on_Area2D_body_entered(body):
-	if body.get_class() == "Player":
-		emit_signal("player_died")
+func _on_Checkpoint_body_entered(body):
+	emit_signal("entered_checkpoint", id)
