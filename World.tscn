@@ -106,7 +106,7 @@ position = Vector2( 1928, 336 )
 scale = Vector2( 19.56, 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 7728, 512 )
+position = Vector2( -1184, 640.792 )
 z_index = 5
 
 [node name="Switch" type="Node2D" parent="."]
@@ -316,7 +316,7 @@ position = Vector2( 7872, 176.066 )
 number = 24
 
 [node name="Portal 28" parent="Portals" instance=ExtResource( 3 )]
-position = Vector2( 8304, 591.417 )
+position = Vector2( 8304, 592 )
 number = 28
 
 [node name="Portal 29" parent="Portals" instance=ExtResource( 3 )]
