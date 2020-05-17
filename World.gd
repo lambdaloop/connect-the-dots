@@ -36,11 +36,18 @@ func _ready():
 	for edge in get_children():
 		if edge.get_class() == 'StageEdge':
 			edge.connect("pan_camera", self, "pan_camera")
+			
+	for zone in get_children():
+		if zone.get_class() == "DeathZone":
+			zone.connect("player_died", self, "player_death")
 	#$Camera2D.move_local_x(1280)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func player_death():
+	print("YOU DEADDD")
 
 func pan_camera(dx):
 	$Camera2D.move_local_x(dx)
@@ -72,11 +79,5 @@ func player_move_portal(number, direction):
 			
 	var after = $Player.position.x
 	$Camera2D.position.x = floor($Player.position.x / 1280) * 1280
-#	var s1 = int(before / 1280)
-#	var s2 = int(after / 1280)
-#	if s2 > s1:
-#		pan_camera(1280)
-#	elif s2 < s1:
-#		pan_camera(-1280)
 		
 
