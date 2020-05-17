@@ -7,7 +7,7 @@ extends Node2D
 
 var PortalLine = load("res://PortalLine.tscn")
 
-const PORTAL_OFFSET = 24
+const PORTAL_OFFSET = 32
 
 var portal_dict = {}
 var lines_dict = {} # key for a line from portal N-1 to N is N
@@ -92,13 +92,13 @@ func player_move_portal(number, direction):
 		if p.enabled_left:
 			p.disable_until_exit()
 			$Player.position = p.position 
-			$Player.translate(Vector2(-30, 4))
+			$Player.translate(Vector2(-42, 4))
 			$Player.flip_dy()
 	elif direction == "right":
 		if p.enabled_right:
 			p.disable_until_exit()
 			$Player.position = p.position
-			$Player.translate(Vector2(30, 4))
+			$Player.translate(Vector2(42, 4))
 			$Player.flip_dy()
 			
 	var after = $Player.position.x

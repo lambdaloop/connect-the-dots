@@ -34,6 +34,7 @@ func activate_left():
 func activate_right():
 	enabled_right = true
 	update_ui()
+	
 
 func _on_portal_key_body_entered(body):
 	if $portal_key.visible and body.get_class() == "Player":

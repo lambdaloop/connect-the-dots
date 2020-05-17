@@ -25,8 +25,8 @@ func _ready():
 
 func _process(delta):
 	$Sprite.set_scale(Vector2(
-		1.75 - 0.3*abs(dx)/MOVE_MAX_SPEED, 
-		1.75 - 0.3*abs(dy)/MAX_FALL_SPEED))
+		1.75 - 0.3*abs(dx)/MOVE_MAX_SPEED - 0.3*abs(dy)/MAX_FALL_SPEED, 
+		1.75 ))
 	
 func _physics_process(delta):
 	if Input.is_action_pressed("ui_right"):
